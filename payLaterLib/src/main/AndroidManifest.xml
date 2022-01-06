@@ -38,13 +38,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="public_key"
-            android:value="${publicKey}" />
-        <meta-data
-            android:name="encryption_key"
-            android:value="${encryptionKey}" />
-
         <service
             android:name=".utils.firebase.MyFirebaseMessagingService"
             android:enabled="true"
