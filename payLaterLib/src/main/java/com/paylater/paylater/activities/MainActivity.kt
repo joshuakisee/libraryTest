@@ -44,6 +44,72 @@ private lateinit var binding: ActivityMainBinding
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
 
+        var clientName = intent.getStringExtra("fullName")
+        var clientPhone = intent.getStringExtra("phoneNumber")
+        var clientScore = intent.getStringExtra("score")
+        var publicKey = intent.getStringExtra("publicKey")
+        var privateKey = intent.getStringExtra("privateKey")
+
+        if (clientName != null) {
+            if (clientName.isEmpty()){
+                Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (clientPhone != null) {
+            if (clientPhone.isEmpty()){
+                Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (clientScore != null) {
+            if (clientScore.isEmpty()){
+                Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (publicKey != null) {
+            if (publicKey.isEmpty()){
+                Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (privateKey != null) {
+            if (privateKey.isEmpty()){
+                Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -58,22 +124,14 @@ private lateinit var binding: ActivityMainBinding
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        // important
-        FirebaseApp.initializeApp(this)
-
-        var clientName = intent.getStringExtra("fullName")
-        var clientPhone = intent.getStringExtra("phoneNumber")
-        var clientScore = intent.getStringExtra("score")
-        var publicKey = intent.getStringExtra("publicKey")
-        var privateKey = intent.getStringExtra("privateKey")
-
-        validateData(clientName, clientPhone, clientScore, publicKey, privateKey)
-
         LibSession(this).profileFullName("$clientName")
         LibSession(this).profilePhone("$clientPhone")
         LibSession(this).profileScore("$clientScore")
         LibSession(this).publicKey("$publicKey")
         LibSession(this).privateKey("$privateKey")
+
+
+        FirebaseApp.initializeApp(this)
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
