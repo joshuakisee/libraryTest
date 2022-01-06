@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">PayLater</string>
+    <string name="title_home">Home</string>
+    <string name="title_category">Categories</string>
+    <string name="title_orders">My Orders</string>
+    <string name="purchase">Purchase</string>
+    <string name="deposit">Deposit</string>
+    <string name="title_activity_purchase">PurchaseActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="key_features">KEY FEATURES</string>
+    <string name="payment">Payment Plan</string>
+    <string name="place_order">Place Order</string>
+    <string name="total_price">Total Price</string>
+    <string name="filter">Filter</string>
+    <string name="set_amount">Set amount</string>
+    <string name="balance">Balance</string>
+
+    <string name="channel_name">notification</string>
+    <string name="CHANNEL_ID">12345h56678jdnjkd94</string>
+    <string name="channel_description">notifying new actions.</string>
+
+    <string name="customer_support_phone_one">0741303613</string>
+    <string name="customer_support_phone_two">0741303513</string>
+    <string name="support_email">kisee.test@gmail.com</string>
+    <string name="chooser_email_title">Help</string>
+
+</resources>

@@ -3,19 +3,49 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/boarder_layout_white.xml" value="0.28425925925925927" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_bottom_sheet_white.xml" value="0.2814814814814815" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_edittext_dark_gray.xml" value="0.28425925925925927" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_edittext_white.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_gray_backgraound.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_purple_background.xml" value="0.28425925925925927" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_purple_no_edgebackground.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/rounded_search_box_white.xml" value="0.2814814814814815" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable-v24/total_price.xml" value="0.28703703703703703" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.28425925925925927" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_arrow_drop_down_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_filter_alt_off_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_help_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_help_outline_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.25" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_live_help_24.xml" value="0.33611111111111114" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_radio_button_unchecked_24.xml" value="0.23333333333333334" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_baseline_shopping_bag_24.xml" value="0.3828125" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.3828125" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/rounded_edittext_dark_gray.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/rounded_edittext_green.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/drawable/rounded_purple_no_edgebackground.xml" value="0.23020833333333332" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_card_payment.xml" value="0.28396739130434784" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_help.xml" value="0.36277173913043476" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_main.xml" value="0.28532608695652173" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_notification.xml" value="0.36277173913043476" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_purchase.xml" value="0.25393883225208524" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/activity_tracker.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/content_purchase.xml" value="0.25393883225208524" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/fragment_notifications.xml" value="0.27898550724637683" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/fragment_orders.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_products.xml" value="0.25679347826086957" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_category_brand_filter.xml" value="0.23822463768115942" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_category_brands.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_filter.xml" value="0.1" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_my_oreders.xml" value="0.20969202898550723" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_notifications.xml" value="0.36277173913043476" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_order_details.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_pay_order.xml" value="0.21875" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_place_order.xml" value="0.21875" />
+        <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/layout/layout_products.xml" value="0.1" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/menu/top_bar_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/joshua.kisee/AndroidStudioProjects/PayLater/app/src/main/res/xml/network_security_config.xml" value="0.190625" />

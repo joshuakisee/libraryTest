@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.paylater.paylater">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.HelpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.CardPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.TrackerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.PurchaseActivity"
+            android:exported="false"
+            android:label="@string/title_activity_purchase" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <meta-data
+            android:name="public_key"
+            android:value="${publicKey}" />
+        <meta-data
+            android:name="encryption_key"
+            android:value="${encryptionKey}" />
+
+        <service
+            android:name=".utils.firebase.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

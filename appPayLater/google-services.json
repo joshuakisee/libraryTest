@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "400910740360",
+    "project_id": "paylater-ef0ea",
+    "storage_bucket": "paylater-ef0ea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400910740360:android:f159bc3e03f5012680683d",
+        "android_client_info": {
+          "package_name": "com.paylater.paylater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400910740360-30175v9brelh5gse5kccqndbh0mrv7fm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsJgE50XAxKS4pnz2M0cw0Ng_6pJNIWKY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400910740360-30175v9brelh5gse5kccqndbh0mrv7fm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
