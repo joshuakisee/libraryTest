@@ -31,16 +31,8 @@ class HelpActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.call_list_num_one).setOnClickListener{
 
-//            val intent = Intent(Intent.ACTION_DIAL)
-//            intent.data = Uri.parse("tel: "+getString(R.string.customer_support_phone_one))
-//            startActivity(intent)
-
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("fullName", "Joshua Kisee")
-            intent.putExtra("phoneNumber", "0705118708")
-            intent.putExtra("score", "600")
-            intent.putExtra("publicKey", "O4bmMWglsFGxbDSOHNx2zL2C2H2tC1Dw")
-            intent.putExtra("privateKey", "YTLKaH25wtt4zCj1")
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel: "+getString(R.string.customer_support_phone_one))
             startActivity(intent)
 
         }

@@ -13,7 +13,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.paylater.paylater.R
-import com.paylater.paylater.activities.MainActivity
+import com.paylater.paylater.activities.LibMainActivity
 import com.paylater.paylater.utils.Api
 import com.paylater.paylater.utils.Auth
 import com.paylater.paylater.utils.DB.DBHelper
@@ -70,7 +70,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun notification(CHANNEL_ID:String, msg:String, title:String){
 
         // Create an explicit intent for an Activity in your app
-        val intent = Intent(this, MainActivity::class.java).apply {
+        val intent = Intent(this, LibMainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(this, 0, intent,  PendingIntent.FLAG_IMMUTABLE)

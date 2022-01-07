@@ -29,7 +29,7 @@ import retrofit2.Response
 import com.google.firebase.messaging.FirebaseMessaging
 
 
-class MainActivity : AppCompatActivity() {
+class LibMainActivity : AppCompatActivity() {
 
     private val apiService by lazy {
         Api.create()
@@ -43,72 +43,6 @@ private lateinit var binding: ActivityMainBinding
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
-
-        var clientName = intent.getStringExtra("fullName")
-        var clientPhone = intent.getStringExtra("phoneNumber")
-        var clientScore = intent.getStringExtra("score")
-        var publicKey = intent.getStringExtra("publicKey")
-        var privateKey = intent.getStringExtra("privateKey")
-
-        if (clientName != null) {
-            if (clientName.isEmpty()){
-                Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-        }else{
-            Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
-
-        if (clientPhone != null) {
-            if (clientPhone.isEmpty()){
-                Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-        }else{
-            Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
-
-        if (clientScore != null) {
-            if (clientScore.isEmpty()){
-                Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-        }else{
-            Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
-
-        if (publicKey != null) {
-            if (publicKey.isEmpty()){
-                Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-        }else{
-            Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
-
-        if (privateKey != null) {
-            if (privateKey.isEmpty()){
-                Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
-                finish()
-                return
-            }
-        }else{
-            Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
-            finish()
-            return
-        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -124,21 +58,14 @@ private lateinit var binding: ActivityMainBinding
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        LibSession(this).profileFullName("$clientName")
-        LibSession(this).profilePhone("$clientPhone")
-        LibSession(this).profileScore("$clientScore")
-        LibSession(this).publicKey("$publicKey")
-        LibSession(this).privateKey("$privateKey")
-
-
         FirebaseApp.initializeApp(this)
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 val token = task.result
-                createCustomerProfile(token.toString(), "$clientName", "$clientPhone", "$clientScore")
+                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
             }else{
-                createCustomerProfile("", "$clientName", "$clientPhone", "$clientScore")
+                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
             }
         }
 
@@ -191,7 +118,7 @@ private lateinit var binding: ActivityMainBinding
         val call : Call<Model.CreateProfile> = apiService.createProfile("Basic ${Auth().auth(this)}", requestBody)
         call.enqueue(object : Callback<Model.CreateProfile> {
             override fun onFailure(call: Call<Model.CreateProfile>?, t: Throwable?) {
-                LibSession(this@MainActivity).profileIsCreated(false)
+                LibSession(this@LibMainActivity).profileIsCreated(false)
             }
 
             override fun onResponse(call: Call<Model.CreateProfile>?, response: Response<Model.CreateProfile>?) {
@@ -199,13 +126,13 @@ private lateinit var binding: ActivityMainBinding
                 if (response!!.isSuccessful){
                     if(response.body()!!.status == "00"){
                         Log.d("data_returned", "${response.body()}")
-                        LibSession(this@MainActivity).profileIsCreated(true)
+                        LibSession(this@LibMainActivity).profileIsCreated(true)
                     }else{
                         Log.d("data_returned", "${response.body()}")
-                        LibSession(this@MainActivity).profileIsCreated(false)
+                        LibSession(this@LibMainActivity).profileIsCreated(false)
                     }
                 }else{
-                    LibSession(this@MainActivity).profileIsCreated(false)
+                    LibSession(this@LibMainActivity).profileIsCreated(false)
                 }
             }
         })
