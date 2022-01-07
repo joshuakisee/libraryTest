@@ -11,29 +11,36 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.tasks.Task
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.FirebaseApp
+import com.google.firebase.messaging.FirebaseMessaging
 import com.paylater.paylater.R
 import com.paylater.paylater.adaptors.ProductsAdaptor
 import com.paylater.paylater.utils.*
+import com.paylater.paylater.utils.DB.DBHelper
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.RequestBody
 import org.json.JSONArray
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class StartActivity : AppCompatActivity() {
+class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val apiService by lazy {
         Api.create()
@@ -55,11 +62,20 @@ class StartActivity : AppCompatActivity() {
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
 
-        var clientName = intent.getStringExtra("fullName")
-        var clientPhone = intent.getStringExtra("phoneNumber")
-        var clientScore = intent.getStringExtra("score")
-        var publicKey = intent.getStringExtra("publicKey")
-        var privateKey = intent.getStringExtra("privateKey")
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+//        var clientName = intent.getStringExtra("fullName")
+//        var clientPhone = intent.getStringExtra("phoneNumber")
+//        var clientScore = intent.getStringExtra("score")
+//        var publicKey = intent.getStringExtra("publicKey")
+//        var privateKey = intent.getStringExtra("privateKey")
+
+        var clientName = "joshua"
+        var clientPhone = "0705118708"
+        var clientScore = "700"
+        var publicKey = "O4bmMWglsFGxbDSOHNx2zL2C2H2tC1Dw"
+        var privateKey = "YTLKaH25wtt4zCj1"
 
         if (clientName != null) {
             if (clientName.isEmpty()){
@@ -134,6 +150,19 @@ class StartActivity : AppCompatActivity() {
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
+        FirebaseApp.initializeApp(this)
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
+            if (task.isSuccessful) {
+                val token = task.result
+                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }else{
+                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }
+        }
+
+        getAllNotifications()
+
         productRecycler.apply {
             layoutManager = GridLayoutManager(this@StartActivity, 1)
             productsAdaptor = ProductsAdaptor(this@StartActivity)
@@ -179,6 +208,90 @@ class StartActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_bar_menu, menu)
+        return true
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.navigation_home -> {
+                products(this, "", "", "", "")
+                true
+            }
+            R.id.navigation_category -> {
+                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.navigation_orders -> {
+                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_notification -> {
+                val intent = Intent(this, NotificationActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            R.id.action_help -> {
+                val intent = Intent(this, HelpActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun getAllNotifications(){
+        var notification = DBHelper(this, null).getAllNotifications() as ArrayList<*>
+
+
+        Log.d("notifications", "${notification.size}")
+    }
+
+    private fun createCustomerProfile(fireBase:String, name:String, phone:String, score:String){
+
+        var json = JSONObject()
+        json.put("firebaseToken", "$fireBase")
+        json.put("fullNames", "$name")
+        json.put("phoneNumber", "$phone")
+        json.put("score", "$score")
+
+        val requestBody : RequestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), json.toString())
+
+        val call : Call<Model.CreateProfile> = apiService.createProfile("Basic ${Auth().auth(this)}", requestBody)
+        call.enqueue(object : Callback<Model.CreateProfile> {
+            override fun onFailure(call: Call<Model.CreateProfile>?, t: Throwable?) {
+                LibSession(this@StartActivity).profileIsCreated(false)
+            }
+
+            override fun onResponse(call: Call<Model.CreateProfile>?, response: Response<Model.CreateProfile>?) {
+
+                if (response!!.isSuccessful){
+                    if(response.body()!!.status == "00"){
+                        Log.d("data_returned", "${response.body()}")
+                        LibSession(this@StartActivity).profileIsCreated(true)
+                    }else{
+                        Log.d("data_returned", "${response.body()}")
+                        LibSession(this@StartActivity).profileIsCreated(false)
+                    }
+                }else{
+                    LibSession(this@StartActivity).profileIsCreated(false)
+                }
+            }
+        })
     }
 
     fun getBrands(context: Context, callBack:CallBrands){

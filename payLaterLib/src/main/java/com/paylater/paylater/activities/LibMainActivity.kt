@@ -35,7 +35,7 @@ class LibMainActivity : AppCompatActivity() {
         Api.create()
     }
 
-private lateinit var binding: ActivityMainBinding
+//private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,19 +44,98 @@ private lateinit var binding: ActivityMainBinding
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+//        binding = ActivityMainBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+//        val navView: BottomNavigationView = binding.navView
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        bottomNavigationView.setupWithNavController(navController
+        )
+
+        //val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home, R.id.navigation_category, R.id.navigation_orders
-        ))
+//        val appBarConfiguration = AppBarConfiguration(setOf(
+//            R.id.navigation_home, R.id.navigation_category, R.id.navigation_orders
+//        ))
         //setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+//        navView.setupWithNavController(navController)
+
+        var clientName = "joshua"
+        var clientPhone = "0705118708"
+        var clientScore = "700"
+        var publicKey = "O4bmMWglsFGxbDSOHNx2zL2C2H2tC1Dw"
+        var privateKey = "YTLKaH25wtt4zCj1"
+
+
+        if (clientName != null) {
+            if (clientName.isEmpty()){
+                Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide name", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (clientPhone != null) {
+            if (clientPhone.isEmpty()){
+                Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide phone number", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (clientScore != null) {
+            if (clientScore.isEmpty()){
+                Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide credit score", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (publicKey != null) {
+            if (publicKey.isEmpty()){
+                Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide public key", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        if (privateKey != null) {
+            if (privateKey.isEmpty()){
+                Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
+                finish()
+                return
+            }
+        }else{
+            Toast.makeText(this, "Please provide private key", Toast.LENGTH_LONG).show()
+            finish()
+            return
+        }
+
+        LibSession(this).profileFullName("$clientName")
+        LibSession(this).profilePhone("$clientPhone")
+        LibSession(this).profileScore("$clientScore")
+        LibSession(this).publicKey("$publicKey")
+        LibSession(this).privateKey("$privateKey")
+
 
         FirebaseApp.initializeApp(this)
 
