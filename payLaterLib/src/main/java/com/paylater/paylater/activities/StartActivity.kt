@@ -62,7 +62,7 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
 
-        FirebaseApp.initializeApp(this)
+        //FirebaseApp.initializeApp(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -146,14 +146,14 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
-            if (task.isSuccessful) {
-                val token = task.result
-                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-            }else{
-                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-            }
-        }
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
+//            if (task.isSuccessful) {
+//                val token = task.result
+//                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+//            }else{
+//                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+//            }
+//        }
 
         getAllNotifications()
 
