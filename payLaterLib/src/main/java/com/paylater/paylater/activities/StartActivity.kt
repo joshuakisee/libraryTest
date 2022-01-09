@@ -62,7 +62,7 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
 
-        //FirebaseApp.initializeApp(this)
+        FirebaseApp.initializeApp(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
