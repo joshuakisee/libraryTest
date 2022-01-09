@@ -146,14 +146,14 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
-//            if (task.isSuccessful) {
-//                val token = task.result
-//                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-//            }else{
-//                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-//            }
-//        }
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
+            if (task.isSuccessful) {
+                val token = task.result
+                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }else{
+                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }
+        }
 
         getAllNotifications()
 
