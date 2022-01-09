@@ -40,7 +40,7 @@ import retrofit2.Response
 import java.util.*
 import kotlin.collections.ArrayList
 
-class StartActivity : AppCompatActivity() {
+class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     private val apiService by lazy {
         Api.create()
@@ -64,8 +64,8 @@ class StartActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this)
 
-//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         var clientName = intent.getStringExtra("fullName")
         var clientPhone = intent.getStringExtra("phoneNumber")
@@ -214,23 +214,23 @@ class StartActivity : AppCompatActivity() {
         return true
     }
 
-//    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.navigation_home -> {
-//                products(this, "", "", "", "")
-//                true
-//            }
-//            R.id.navigation_category -> {
-//                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
-//                true
-//            }
-//            R.id.navigation_orders -> {
-//                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
-//                true
-//            }
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.navigation_home -> {
+                products(this, "", "", "", "")
+                true
+            }
+            R.id.navigation_category -> {
+                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
+                true
+            }
+            R.id.navigation_orders -> {
+                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
