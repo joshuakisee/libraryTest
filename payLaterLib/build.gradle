@@ -10,7 +10,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-//        applicationId "com.paylater.paylater"
+        applicationId "com.paylater.paylater"
         minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
