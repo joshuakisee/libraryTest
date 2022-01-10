@@ -153,23 +153,12 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
-
-//        if(FirebaseApp.getApps(this).isNotEmpty()) {
-//            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-//
-//            Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
-//            Log.d("firebaseTokenNot", "firebase was not initialized")
-//
-//        }
 
 
-//        FirebaseApp.initializeApp(this)
-//        if(FirebaseApp.getApps(this).isEmpty()){
-//            FirebaseApp.initializeApp(this)
-//            Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
-//            Log.d("firebaseTokenNot", "firebase was not initialized")
-//        }
+        var fTokenInit = FirebaseApp.initializeApp(this)
+
+        Log.d("fTokenInit", "$fTokenInit")
+        Log.d("fAppName", "${FirebaseApp.DEFAULT_APP_NAME}")
 
         if(FirebaseApp.getApps(this).isNotEmpty()){
             getFirebaseToken()
