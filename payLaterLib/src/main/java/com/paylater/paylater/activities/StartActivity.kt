@@ -235,7 +235,8 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
                 true
             }
             R.id.navigation_orders -> {
-                Toast.makeText(this, "to open a new activity", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, OrdersActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

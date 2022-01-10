@@ -12,8 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activities.OrdersActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StartActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,8 +42,7 @@
         <activity
             android:name=".activities.LibMainActivity"
             android:exported="false"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"></activity>
 
         <service
             android:name=".utils.firebase.MyFirebaseMessagingService"
