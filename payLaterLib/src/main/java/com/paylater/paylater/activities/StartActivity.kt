@@ -5,6 +5,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.PointF.length
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -61,8 +62,6 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.WHITE))
         supportActionBar?.title = Html.fromHtml("<font color='#702473'>Pay Later</font>")
-
-        FirebaseApp.initializeApp(this)
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -146,14 +145,21 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
+        if(FirebaseApp.getApps(this).isEmpty()){
+            FirebaseApp.initializeApp(this)
+            Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
+        }else{
+            Toast.makeText(this, "firebase was ready", Toast.LENGTH_LONG).show()
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 val token = task.result
+                Toast.makeText(this, "got firebase token", Toast.LENGTH_LONG).show()
                 createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
             }else{
+                Toast.makeText(this, "didn't get firebase token", Toast.LENGTH_LONG).show()
                 createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
             }
-        }
+        }}
 
         getAllNotifications()
 
