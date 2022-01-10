@@ -68,17 +68,11 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_view)
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-//        var clientName = intent.getStringExtra("fullName")
-//        var clientPhone = intent.getStringExtra("phoneNumber")
-//        var clientScore = intent.getStringExtra("score")
-//        var publicKey = intent.getStringExtra("publicKey")
-//        var privateKey = intent.getStringExtra("privateKey")
-
-        var clientName = "joshua"
-        var clientPhone = "0705118708"
-        var clientScore = "700"
-        var publicKey = "O4bmMWglsFGxbDSOHNx2zL2C2H2tC1Dw"
-        var privateKey = "YTLKaH25wtt4zCj1"
+        var clientName = intent.getStringExtra("fullName")
+        var clientPhone = intent.getStringExtra("phoneNumber")
+        var clientScore = intent.getStringExtra("score")
+        var publicKey = intent.getStringExtra("publicKey")
+        var privateKey = intent.getStringExtra("privateKey")
 
         if (clientName != null) {
             if (clientName.isEmpty()){
@@ -152,7 +146,6 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         parentContainer = findViewById(R.id.parent_container)
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
-
 
 
         var fTokenInit = FirebaseApp.initializeApp(this)
