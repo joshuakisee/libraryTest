@@ -150,22 +150,12 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
             FirebaseApp.initializeApp(this)
             Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
             Log.d("firebaseTokenNot", "firebase was not initialized")
-        }else{
-            Toast.makeText(this, "firebase was ready", Toast.LENGTH_LONG).show()
-            Log.d("firebaseTokenReady", "firebase was ready")
-            FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
-                if (task.isSuccessful) {
-                    val token = task.result
-                    Toast.makeText(this, "got firebase token", Toast.LENGTH_LONG).show()
-                    Log.d("firebaseTokenReady", "got firebase token")
-                    createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-                }else{
-                    Toast.makeText(this, "didn't get firebase token", Toast.LENGTH_LONG).show()
-                    Log.d("firebaseNotAvailable", "didn't get firebase token")
-                    createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-                }
-            }
         }
+
+        if(FirebaseApp.getApps(this).isNotEmpty()){
+            getFirebaseToken()
+        }
+
 
         getAllNotifications()
 
@@ -257,6 +247,23 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
                 return true
             }
             else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    fun getFirebaseToken(){
+        Toast.makeText(this, "firebase was ready", Toast.LENGTH_LONG).show()
+        Log.d("firebaseTokenReady", "firebase was ready")
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
+            if (task.isSuccessful) {
+                val token = task.result
+                Toast.makeText(this, "got firebase token", Toast.LENGTH_LONG).show()
+                Log.d("firebaseTokenReady", "got firebase token")
+                createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }else{
+                Toast.makeText(this, "didn't get firebase token", Toast.LENGTH_LONG).show()
+                Log.d("firebaseNotAvailable", "didn't get firebase token")
+                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
+            }
         }
     }
 
