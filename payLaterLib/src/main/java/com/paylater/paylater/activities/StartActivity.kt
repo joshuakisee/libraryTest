@@ -25,6 +25,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.paylater.paylater.R
 import com.paylater.paylater.adaptors.ProductsAdaptor
@@ -145,12 +147,24 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
-        FirebaseApp.initializeApp(this)
-        if(FirebaseApp.getApps(this).isEmpty()){
-            FirebaseApp.initializeApp(this)
+        FirebaseDatabase.getInstance();
+
+        if(!FirebaseApp.getApps(this).isEmpty()) {
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
             Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
             Log.d("firebaseTokenNot", "firebase was not initialized")
+
         }
+
+
+//        FirebaseApp.initializeApp(this);
+//        FirebaseApp.initializeApp(this)
+//        if(FirebaseApp.getApps(this).isEmpty()){
+//            FirebaseApp.initializeApp(this)
+//            Toast.makeText(this, "firebase was not initialized", Toast.LENGTH_LONG).show()
+//            Log.d("firebaseTokenNot", "firebase was not initialized")
+//        }
 
         if(FirebaseApp.getApps(this).isNotEmpty()){
             getFirebaseToken()
