@@ -103,8 +103,6 @@ class CardPaymentActivity : AppCompatActivity() {
         var list = ArrayList<JSONObject>()
         list.add(data)
 
-        Log.d("meta_data", "${list.toList() as MutableList<Meta>?}")
-
         RaveUiManager(this)
             .setAmount(amount!!.toDouble())
             .setCurrency("KES")
@@ -131,7 +129,7 @@ class CardPaymentActivity : AppCompatActivity() {
             .acceptBarterPayments(false)
             .acceptFrancMobileMoneyPayments(false, "")
             .allowSaveCardFeature(false)
-            .onStagingEnv(true)
+            .onStagingEnv(false)
             .setMeta(list.toList() as MutableList<Meta>?)
             .isPreAuth(false)
             .shouldDisplayFee(false)
