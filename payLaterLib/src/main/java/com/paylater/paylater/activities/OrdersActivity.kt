@@ -82,6 +82,13 @@ class OrdersActivity : AppCompatActivity() {
 
                     val json = response.errorBody()!!.string()
 
+                    if (response.code()==404){
+                        val toast = Toast.makeText(context, "No order found. Place an order.", Toast.LENGTH_LONG)
+                        toast.setGravity(Gravity.CENTER, 0, 0)
+                        toast.show()
+                        return
+                    }
+
                     if (response.code()>500){
                         val toast = Toast.makeText(context, "System error please try again later.", Toast.LENGTH_LONG)
                         toast.setGravity(Gravity.CENTER, 0, 0)
