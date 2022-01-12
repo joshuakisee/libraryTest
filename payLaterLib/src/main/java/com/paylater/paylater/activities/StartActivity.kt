@@ -5,7 +5,6 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.PointF.length
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -16,8 +15,6 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
@@ -25,8 +22,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.FirebaseApp
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.paylater.paylater.R
 import com.paylater.paylater.adaptors.ProductsAdaptor
@@ -147,14 +142,12 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
         val filter: LinearLayout = findViewById(R.id.filter)
         val filterNow: LinearLayout = findViewById(R.id.filter_now)
 
-
-        var fTokenInit = FirebaseApp.initializeApp(this)
-
-        Log.d("fTokenInit", "$fTokenInit")
-        Log.d("fAppName", "${FirebaseApp.DEFAULT_APP_NAME}")
+        FirebaseApp.initializeApp(this)
 
         if(FirebaseApp.getApps(this).isNotEmpty()){
             getFirebaseToken()
+        }else{
+            createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
         }
 
 
@@ -254,18 +247,10 @@ class StartActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItem
     }
 
     fun getFirebaseToken(){
-        Toast.makeText(this, "firebase was ready", Toast.LENGTH_LONG).show()
-        Log.d("firebaseTokenReady", "firebase was ready")
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task: Task<*> ->
             if (task.isSuccessful) {
                 val token = task.result
-                Toast.makeText(this, "got firebase token", Toast.LENGTH_LONG).show()
-                Log.d("firebaseTokenReady", "got firebase token")
                 createCustomerProfile(token.toString(), "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
-            }else{
-                Toast.makeText(this, "didn't get firebase token", Toast.LENGTH_LONG).show()
-                Log.d("firebaseNotAvailable", "didn't get firebase token")
-                createCustomerProfile("", "${LibSession(this).retrieveLibSession("full_name")}", "${LibSession(this).retrieveLibSession("phone_number")}", "${LibSession(this).retrieveLibSession("score")}")
             }
         }
     }

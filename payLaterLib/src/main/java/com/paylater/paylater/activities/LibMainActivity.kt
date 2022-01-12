@@ -28,6 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import com.google.firebase.messaging.FirebaseMessaging
 
+/****this activity and its components is out dated and not in use any more*/
 
 class LibMainActivity : AppCompatActivity() {
 
@@ -63,11 +64,11 @@ class LibMainActivity : AppCompatActivity() {
         //setupActionBarWithNavController(navController, appBarConfiguration)
 //        navView.setupWithNavController(navController)
 
-        var clientName = "joshua"
-        var clientPhone = "0705118708"
-        var clientScore = "700"
-        var publicKey = "O4bmMWglsFGxbDSOHNx2zL2C2H2tC1Dw"
-        var privateKey = "YTLKaH25wtt4zCj1"
+        var clientName = ""
+        var clientPhone = ""
+        var clientScore = ""
+        var publicKey = ""
+        var privateKey = ""
 
 
         if (clientName != null) {
