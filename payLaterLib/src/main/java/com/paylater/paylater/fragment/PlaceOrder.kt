@@ -233,7 +233,7 @@ class PlaceOrder : BottomSheetDialogFragment() {
                         return
                     }
 
-                    Log.d("data_error", "$json")
+                    Log.d("error_place_order", "$json")
 
                     val toast = Toast.makeText(context, "Error occurred! try again later.", Toast.LENGTH_LONG)
                     toast.setGravity(Gravity.CENTER, 0, 0)
